@@ -1,13 +1,425 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stroud Football Skills</title>
-</head>
-<body>
-  <h1>Stroud Football Skills</h1>
-  <p>Welcome to my football website.</p>
-  <p>I play under 7s football and I want to share the skills I am learning.</p>
-</body>
-</html>
+<section id="jules-football-block">
+    <style>
+        /* ==================================================================
+           JULES FOOTBALL BLOCK STYLES
+           These styles are scoped to only affect this specific block.
+           ================================================================== */
+        
+        #jules-football-block {
+            /* Base settings */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            color: #1A237E; /* Deep Navy */
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            background: #F4F7F4;
+        }
+
+        #jules-football-block * {
+            box-sizing: border-box;
+        }
+
+        /* --- HERO SECTION --- */
+        .jfb-hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #E8F5E9;
+        }
+
+        .jfb-hero-img-container {
+            width: 100%;
+            height: 300px;
+        }
+
+        .jfb-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .jfb-hero-content {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 16px;
+            margin: -60px 1.5rem 1.5rem 1.5rem; /* Pulls card up over the image on mobile */
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 8px 24px rgba(26, 35, 126, 0.08);
+        }
+
+        .jfb-label {
+            display: inline-block;
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .jfb-title {
+            font-size: 1.75rem;
+            margin: 0 0 0.75rem 0;
+            color: #1A237E;
+            line-height: 1.2;
+        }
+
+        .jfb-intro {
+            font-size: 1rem;
+            margin: 0;
+            color: #4A5568;
+            line-height: 1.6;
+        }
+
+        /* --- SKILLS SECTION --- */
+        .jfb-skills-section {
+            padding: 3rem 1.5rem;
+            background-color: #F4F7F4; /* Off-white */
+            /* Subtle pitch line pattern in the background */
+            background-image: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 80px,
+                rgba(76, 175, 80, 0.04) 80px,
+                rgba(76, 175, 80, 0.04) 160px
+            );
+        }
+
+        .jfb-tabs {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .jfb-tab {
+            background: #FFFFFF;
+            border: 2px solid transparent;
+            color: #1A237E;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .jfb-tab:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .jfb-tab.jfb-active {
+            background: #4CAF50; /* Grass Green */
+            color: #FFFFFF;
+            border-color: #388E3C;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.2);
+        }
+
+        .jfb-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .jfb-card {
+            background: #FFFFFF;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(26, 35, 126, 0.04);
+            transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .jfb-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .jfb-card-icon {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            background: #F4F7F4;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .jfb-card-title {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            color: #1A237E;
+            font-weight: 700;
+        }
+
+        .jfb-card-note {
+            margin: 0;
+            color: #4A5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* --- RANDOMIZER SECTION --- */
+        .jfb-randomizer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 2px dashed rgba(76, 175, 80, 0.2);
+        }
+
+        .jfb-btn-orange {
+            background: #FF9800; /* Orange Accent */
+            color: #FFFFFF;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(255, 152, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .jfb-btn-orange:hover {
+            background: #F57C00;
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        .jfb-random-result {
+            margin-top: 1.5rem;
+            padding: 1.25rem 1.5rem;
+            background: #FFFFFF;
+            border-radius: 12px;
+            border-left: 5px solid #FF9800;
+            display: none; /* Hidden until clicked */
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .jfb-random-result strong {
+            display: block;
+            color: #1A237E;
+            font-size: 1.25rem;
+            margin-bottom: 0.35rem;
+        }
+
+        /* --- ACCESSIBILITY & FOCUS --- */
+        #jules-football-block button:focus-visible {
+            outline: 3px solid #FF9800;
+            outline-offset: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #jules-football-block * {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+
+        /* --- DESKTOP RESPONSIVE LAYOUT --- */
+        @media (min-width: 768px) {
+            .jfb-hero {
+                height: 480px;
+                display: block;
+            }
+
+            .jfb-hero-img-container {
+                height: 100%;
+            }
+
+            /* Soft gradient overlay for text readability on desktop */
+            .jfb-hero::after {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: linear-gradient(90deg, transparent 40%, rgba(26, 35, 126, 0.15) 100%);
+                pointer-events: none;
+            }
+
+            /* Card floats over the open grass on the right */
+            .jfb-hero-content {
+                position: absolute;
+                top: 50%;
+                right: 5%;
+                transform: translateY(-50%);
+                width: 420px;
+                margin: 0;
+                padding: 2.5rem;
+            }
+
+            .jfb-title {
+                font-size: 2.25rem;
+            }
+
+            .jfb-intro {
+                font-size: 1.125rem;
+            }
+
+            .jfb-skills-section {
+                padding: 4rem 3rem;
+            }
+        }
+    </style>
+
+    <!-- ==================================================================
+         HERO AREA
+         ================================================================== -->
+    <div class="jfb-hero">
+        <div class="jfb-hero-img-container">
+            <!-- PARENTS: Change the image filename in the src attribute below -->
+            <img class="jfb-hero-img" src="Jules Football.jpg" alt="Jules playing football on a grassy field" />
+        </div>
+        <div class="jfb-hero-content">
+            <span class="jfb-label">For my football friends</span>
+            <h2 class="jfb-title">Jules' Football Skills</h2>
+            <p class="jfb-intro">Hi! I love football. This page shows what I have learned and what I am practising.</p>
+        </div>
+    </div>
+
+    <!-- ==================================================================
+         SKILLS AREA
+         ================================================================== -->
+    <div class="jfb-skills-section">
+        
+        <!-- Tab Navigation -->
+        <div class="jfb-tabs" role="tablist" aria-label="Football Skills Tabs">
+            <button class="jfb-tab jfb-active" role="tab" aria-selected="true" id="jfb-btn-learned" onclick="jfbSwitchTab('learned')">
+                Skills I've learned
+            </button>
+            <button class="jfb-tab" role="tab" aria-selected="false" id="jfb-btn-practising" onclick="jfbSwitchTab('practising')">
+                What I'm practising
+            </button>
+        </div>
+
+        <!-- Cards Container (Populated by JavaScript) -->
+        <div class="jfb-grid" id="jfb-skills-grid" role="tabpanel" aria-live="polite">
+            <!-- Cards will appear here automatically -->
+        </div>
+
+        <!-- Randomizer Feature -->
+        <div class="jfb-randomizer">
+            <button class="jfb-btn-orange" onclick="jfbPickRandom()">
+                Pick my practice skill
+            </button>
+            <div id="jfb-random-result" class="jfb-random-result" aria-live="polite">
+                <!-- Random skill will appear here -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================================================================
+         JAVASCRIPT LOGIC
+         ================================================================== -->
+    <script>
+        /* PARENTS: Edit the text inside the quotes below to update Jules' skills! 
+           Make sure to keep the quotation marks and commas exactly as they are. */
+        
+        var jfbLearned = [
+            { icon: "⚽", title: "Dribbling", note: "Keeping the ball close" },
+            { icon: "🛑", title: "Stopping the ball", note: "Trapping with the sole" },
+            { icon: "🎯", title: "Shooting", note: "Hitting the target" }
+        ];
+
+        var jfbPractising = [
+            { icon: "🤝", title: "Passing", note: "To my teammates" },
+            { icon: "👣", title: "Using both feet", note: "Left and right" },
+            { icon: "🔄", title: "Turning with the ball", note: "Changing direction fast" }
+        ];
+
+        // Function to render the cards to the page
+        function jfbRenderSkills(skillsArray) {
+            var container = document.getElementById('jfb-skills-grid');
+            container.innerHTML = ''; // Clear current cards
+
+            for (var i = 0; i < skillsArray.length; i++) {
+                var skill = skillsArray[i];
+
+                var card = document.createElement('div');
+                card.className = 'jfb-card';
+
+                var icon = document.createElement('div');
+                icon.className = 'jfb-card-icon';
+                icon.setAttribute('aria-hidden', 'true');
+                icon.innerText = skill.icon;
+
+                var title = document.createElement('h3');
+                title.className = 'jfb-card-title';
+                title.innerText = skill.title;
+
+                var note = document.createElement('p');
+                note.className = 'jfb-card-note';
+                note.innerText = skill.note;
+
+                card.appendChild(icon);
+                card.appendChild(title);
+                card.appendChild(note);
+
+                container.appendChild(card);
+            }
+        }
+
+        // Function to handle switching between the two tabs
+        function jfbSwitchTab(tabName) {
+            var btnLearned = document.getElementById('jfb-btn-learned');
+            var btnPractising = document.getElementById('jfb-btn-practising');
+            var resultArea = document.getElementById('jfb-random-result');
+
+            if (tabName === 'learned') {
+                btnLearned.classList.add('jfb-active');
+                btnLearned.setAttribute('aria-selected', 'true');
+                
+                btnPractising.classList.remove('jfb-active');
+                btnPractising.setAttribute('aria-selected', 'false');
+                
+                jfbRenderSkills(jfbLearned);
+                
+                // Hide the random result box if we switch away from the practising tab
+                resultArea.style.display = 'none'; 
+            } else {
+                btnPractising.classList.add('jfb-active');
+                btnPractising.setAttribute('aria-selected', 'true');
+                
+                btnLearned.classList.remove('jfb-active');
+                btnLearned.setAttribute('aria-selected', 'false');
+                
+                jfbRenderSkills(jfbPractising);
+            }
+        }
+
+        // Function to pick a random practicing skill
+        function jfbPickRandom() {
+            var randomIndex = Math.floor(Math.random() * jfbPractising.length);
+            var skill = jfbPractising[randomIndex];
+            var resultArea = document.getElementById('jfb-random-result');
+
+            // Set the content of the message box
+            resultArea.innerHTML = '<strong>' + skill.icon + ' ' + skill.title + '</strong>' + skill.note;
+            resultArea.style.display = 'inline-block';
+
+            // Automatically switch to the practising tab to match the context
+            jfbSwitchTab('practising');
+        }
+
+        // Run this once when the page loads to show the Learned skills by default
+        jfbRenderSkills(jfbLearned);
+    </script>
+</section>
